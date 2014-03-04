@@ -1,0 +1,15 @@
+
+
+ul.stream{
+  
+}
+
+ul.stream li.stream-message{
+  margin:0;
+  padding:0;
+  
+}
+
+.stream-message em{
+  display:block;
+}
