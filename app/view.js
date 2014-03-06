@@ -1,42 +1,74 @@
 
-
-
-define(['underscore','backbone'],function(_,Backbone){
+define(['underscore','backbone','app/model'],function(_,Backbone,model){
     console.log("app/view");
     
+
+
     var self = {};
 
-    self.Message = Backbone.View.extend({
-      tagName: "li",
-      className: "stream-message",
-      events: {
-          //~ "click .icon":          "open",
-          //~ "click .button.edit":   "openEditDialog",
-          //~ "click .button.delete": "destroy"
-      },
-      template: _.template('<em class="msg"><%- msg %></em> <small><%- name %></small>'),
+    function init(){
+      console.log("app/view declare components");
+      declareComponents();
+      console.log("app/view create message list");
+      self.messageList = new self.MessageList({model:model.messages});
 
-      initialize: function() {
-        this.listenTo(this.model, "change", this.render);
-      },
-      
-      render: function() {
-        console.log("render");
-        console.log(this.model);
-        console.log(this.model.attributes);
-        this.$el.html(this.template(this.model.attributes));
-        return this;
-      }
-    });
+      return self;
+    }
 
-    self.MessageList = Backbone.View.extend({
-      messages: [],
-      el: '#stream-container',
-      render: function(){_.invoke(this.messages, 'render');},
-      push: function(view){ this.messages.push(view); this.$el.append(view.$el); }
-    });
+    function declareComponents(){
+
+      // ~~~~~~~~~~~~ Message ~~~~~~~~~~~~ 
+      self.Message = Backbone.View.extend({
+        tagName: "blockquote",
+        className: "stream-message",
+        events: {
+            //~ "click .icon":          "open",
+        },
+        template: _.template('<p><%- msg %></p> <small><%- name %></small>'),
+
+        initialize: function() {
+          console.log("app/view Message initialize");
+          this.listenTo(this.model, "change", this.render);
+        },
         
-    //self.msgList = new MessageList();
+        render: function() {
+          console.log("app/view Message render");
+          console.log(this.model);
+          this.$el.html(this.template(this.model.attributes));
+          return this;
+        }
+      });
 
-    return self;
+      // ~~~~~~~~~~~~ MessageList ~~~~~~~~~~~~ 
+      self.MessageList = Backbone.View.extend({
+        messages: [],
+        el: '#stream-container',
+        initialize: function() {
+          console.log("app/view MessageList initialize");
+          this.listenTo(this.model, "add", this.modelAdd);
+          this.listenTo(this.model, "remove", this.modelRemove);
+          console.log("app/view MessageList initialize done");
+        },
+        render: function(){
+          console.log("app/view MessageList render");
+          _.invoke(this.messages, 'render');
+        },
+        modelRemove: function(model,collection,options){
+          console.log("app/view MessageList modelRemove");
+          console.log(model);
+          console.log(collection);
+          console.log(options);
+        }, 
+        modelAdd: function(model,collection,options){
+          console.log("app/view MessageList modelAdd");
+          console.log(model);
+          var elem = new self.Message({ model: model, id: "msg-"+this.messages.length });
+          elem.render();
+          this.messages.push(elem);
+          this.$el.append(elem.$el);
+        }
+      });
+    }
+
+    return init();
 });

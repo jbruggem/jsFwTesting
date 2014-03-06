@@ -2,7 +2,7 @@ require.config({
   paths: {
     jquery: 'lib/zepto.min',
     underscore: 'lib/underscore-min',
-    backbone: 'lib/backbone-min',
+    backbone: 'lib/backbone-min', 
   },
   
   shim: {
@@ -26,22 +26,14 @@ requirejs(['jquery','underscore','backbone','app/controller'],
         
         // TODO: test backbone routes!
         // TODO: LESS CSS !!!!!
-        
-        // btw: this is horrible. Find some better way.
-        // ideally: view should "plugin into" the model -- it's not 
-        // the case here!
-        // so, what to do better
-        // - hierarchical view building
-        // - hierarchical data model building
-        // - binding to view to data model properly
-        
+        // TODO: proper logging system with controllable settings
 
-        
+        // TODO: attach events to views
+        // TODO: define attributes of model object?
+        // TODO: correct mapping view/model
+        // TODO: test other template system. Extract template definitions ?
+           
         controller.start();
-        
-        
-       
-
     });
 
 
