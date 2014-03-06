@@ -6,12 +6,8 @@ require.config({
   },
   
   shim: {
-    jquery: {
-      exports: '$'
-    },
-    underscore: {
-      exports: '_'
-    },
+    jquery: { exports: '$' },
+    underscore: { exports: '_' },
     backbone: {
       deps: ["underscore", "jquery"],
       exports: "Backbone"
@@ -24,14 +20,19 @@ requirejs(['jquery','underscore','backbone','app/controller'],
     function($,_,Backbone,controller){
         console.log("main");
         
-        // TODO: test backbone routes!
-        // TODO: LESS CSS !!!!!
-        // TODO: proper logging system with controllable settings
 
-        // TODO: attach events to views
-        // TODO: define attributes of model object?
-        // TODO: correct mapping view/model
-        // TODO: test other template system. Extract template definitions ?
+        // ------------ TODO ---------------
+        /*
+        backbone
+        - test routes
+        - test sync data with server (add/remove/update)
+
+        others
+          - use less for css
+          - proper logging system with controllable settings
+          - extract template definitions in seperate files. Use moustache, dustjs?
+        */
+
            
         controller.start();
     });
