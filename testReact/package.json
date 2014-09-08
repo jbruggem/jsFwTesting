@@ -1,0 +1,11 @@
+{
+  "name": "webApp",
+  "description": "",
+  "dependencies": {
+    "browserify": "~3.44.x",
+    "gulp": "3.8.x",
+    "react": "0.11.x",
+    "backbone": "1.1.x",
+    "underscore": "*"
+  }
+}
