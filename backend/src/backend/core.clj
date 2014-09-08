@@ -25,5 +25,5 @@
                       :access-control-allow-origin #".+")))
 
 (defn -main [& args]
-    (info "Loading run server.")
+    (info "Loading run server on port 8080.")
     (httpkit/run-server application {:port 8080}))
