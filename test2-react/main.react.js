@@ -3,10 +3,21 @@
   */
       
 var Portal = React.createClass({
+  newMessage: function(msg){
+    this.setState({
+      messages: Array.concat(this.state.messages,[msg])
+    });
+  },
+  getInitialState: function(){
+    return {
+      ploup: 4,
+      messages: []
+    };
+  },
   render: function(){
     return (
       <div className="row interface">
-        <Stream messages={MESSAGES} />
+        <Stream messages={this.state.messages} />
         <Main />
       </div>
       );
@@ -100,9 +111,14 @@ var MESSAGES = [
 
 ];
 
-
-
-React.renderComponent(
+Portal = React.renderComponent(
   <Portal />,
   document.getElementById('portalContainer')
 );
+
+Portal.setState({messages: MESSAGES});
+
+
+
+// MESSAGES.push({"key":"4", "name": "SpongeBob SquarePants",  "msg":"Ploup"})
+// Portal.newMessage({"key":"4", "name": "SpongeBob SquarePants",  "msg":"Ploup"})
