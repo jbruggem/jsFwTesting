@@ -70,7 +70,7 @@ var SearchStream = React.createClass({
           <input className="form-control" type="text" placeholder="search..." 
                     value={this.props.filterText}
                     ref="filterTextInput"
-                    onChange={this.handleChange}  />
+                    onChange={this.handleChange} />
         </div>
       </form>
     )

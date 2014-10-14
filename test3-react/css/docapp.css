@@ -1,0 +1,37 @@
+.docList{
+    width:20em;
+}
+
+.doclist-item{
+    background: rgb(230,230,255);
+    color: rgb(50,50,150);
+    padding:0.3em;
+    border-radius:0.5em;
+    position:relative;
+}
+
+.doclist-item .action{
+    text-decoration:none;
+    position:absolute;
+    background:rgb(50,50,150);
+    color:rgb(230,230,255);
+    border-radius:0.5em;
+    padding:0 0.5em;
+}
+
+
+.doclist-item .action.delete{
+    right:0.5em;
+}
+.doclist-item .action.open{
+    right:2.5em;
+}
+
+.doclist-item.deleted .delete{
+    display:none;
+}
+
+.doclist-item.deleted{
+    color:rgb(100,100,100);
+    background: rgb(230,230,230);
+}
